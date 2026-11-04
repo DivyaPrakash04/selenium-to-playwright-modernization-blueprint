@@ -264,6 +264,7 @@ For a compact handout, use the [migration cheat sheet](docs/Selenium-Java-to-Pla
 
 ## Additional Learning Guides
 
+- [AI assistant contribution guide](AGENTS.md)
 - [Migration Manifest](docs/migration-manifest.md)
 - [AI Review Checklist](docs/ai-review-checklist.md)
 - [Cloud vs Local AI](docs/cloud-vs-local-ai.md)
