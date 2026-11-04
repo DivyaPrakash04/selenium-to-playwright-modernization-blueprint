@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "description": "Educational Selenium Java to Playwright TypeScript migration examples",
-  "scripts": {"test": "playwright test", "typecheck": "tsc --noEmit", "test:headed": "playwright test --headed", "test:ui": "playwright test --ui", "test:smoke": "playwright test --grep @smoke", "test:dynamic": "playwright test src/tests/dynamic.spec.ts", "report": "playwright show-report", "capture:readme": "node scripts/capture-readme-assets.cjs"},
-  "devDependencies": {"@playwright/test": "^1.48.2", "@types/node": "^22.9.0", "dotenv": "^16.4.5", "typescript": "^5.6.3"}
+  "scripts": {"test": "playwright test", "typecheck": "tsc --noEmit", "test:headed": "playwright test --headed", "test:ui": "playwright test --ui", "test:smoke": "playwright test --grep @smoke", "test:dynamic": "playwright test src/tests/dynamic.spec.ts", "report": "playwright show-report", "capture:readme": "node scripts/capture-readme-assets.cjs", "qr": "node scripts/generate-repository-qr.cjs"},
+  "devDependencies": {"@playwright/test": "^1.48.2", "@types/node": "^22.9.0", "dotenv": "^16.4.5", "qrcode": "^1.5.4", "typescript": "^5.6.3"}
 }
