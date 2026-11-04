@@ -265,7 +265,7 @@ For a compact handout, use the [migration cheat sheet](docs/Selenium-Java-to-Pla
 
 ## Suggested GitHub Topics
 
-When publishing, add these topics in the repository settings:
+Repository topics:
 
 `playwright` · `selenium` · `typescript` · `java` · `test-automation` · `quality-engineering` · `ai-assisted-development` · `automation-testing` · `playwright-test` · `migration-guide`
 
@@ -278,3 +278,16 @@ Use the published repository QR code to give teammates quick access to:
 - Reusable AI prompts.
 - Playwright tests and reporting examples.
 - Meetup presentation resources.
+
+<p align="center">
+  <a href="https://github.com/DivyaPrakash04/selenium-to-playwright-modernization-blueprint">
+    <img src="assets/repository-qr.png" alt="QR code linking to the public Selenium to Playwright Modernization Blueprint repository" width="220">
+  </a><br>
+  <a href="https://github.com/DivyaPrakash04/selenium-to-playwright-modernization-blueprint">Open the public GitHub repository</a>
+</p>
+
+Generate a replacement QR code from `playwright-ts-modern/` with:
+
+```powershell
+npm run qr -- https://github.com/OWNER/REPOSITORY
+```
