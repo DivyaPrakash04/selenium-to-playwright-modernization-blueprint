@@ -6,6 +6,6 @@
 | 2. Legacy smells | `selenium-java-legacy/` | Recognize fixed sleeps, structural selectors, and manual polling. |
 | 3. AI-assisted migration | `ai-prompts/`, `docs/cloud-vs-local-ai.md` | Keep model scope narrow and review every change. |
 | 4. Playwright architecture | `playwright-ts-modern/` | Specs, fixtures, pages, configuration, and reporters have clear roles. |
-| 5. Visibility | `src/reporters/jiraReporter.ts` | Results can become business-friendly metadata without a live Jira API. |
+| 5. Visibility | `src/reporters/jiraReporter.ts`, `docs/reporting-and-visibility.md` | See HTML/JUnit/JSON reporting, audience-specific views, and the boundary between this demo's handoff and a future Jira/dashboard integration. |
 | 6. Business value | `docs/measuring-modernization.md` | Measure stability, runtime, throughput, and maintenance. |
 | Handout | `docs/Selenium-Java-to-Playwright-TS-CheatSheet.md` | Keep the migration mappings available during conversion. |

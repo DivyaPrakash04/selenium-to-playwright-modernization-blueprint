@@ -229,24 +229,22 @@ Locator selection prioritizes test IDs, roles, labels, text, CSS, and XPath only
 
 ## 5. Reporting and visibility
 
-```text
-Playwright test result
-          ↓
-src/reporters/jiraReporter.ts
-          ↓
-test-results/jira-results.json
-          ↓
-Business-friendly metadata / future Jira integration
-```
+This project produces three different views from the same Playwright run:
 
-The custom reporter implements Playwright's `onTestEnd()` hook, keeps a test ID from a `jira` annotation when supplied, and records status, a concise failure reason, and labels. It writes local JSON only; no Jira API or credentials are used. HTML supports debugging, JUnit supports CI ingestion, and JSON demonstrates a reporting handoff.
+| Output | Best for | What it contains |
+|---|---|---|
+| Playwright HTML report | Engineers | Test-by-test results, errors, and available screenshots/traces. |
+| JUnit XML | CI systems | Standard machine-readable test cases and outcomes. |
+| Jira-shaped JSON | Integration handoff | Stable test ID, title, status, first failure line, and labels. |
+
+Run `npm test`, then `npm run report` from `playwright-ts-modern/` to open the interactive HTML report. Open `test-results/jira-results.json` to see the custom reporter output. The reporter does not call Jira or upload attachments: it creates a local JSON payload that a CI integration can consume.
 
 ## 6. Suggested meetup walkthrough
 
 1. Show `LoginTest`, `CartTest`, and `DynamicContentTest`; ask the audience to name the risks.
 2. Open the corresponding Playwright spec and compare intent, locator, and wait strategy.
 3. Demonstrate a migration prompt, then inspect it with the review checklist.
-4. Show auth state reuse and HTML/JUnit/Jira-shaped output.
+4. Show auth state reuse, then use the [reporting and visibility architecture guide](docs/reporting-and-visibility.md) to move from the HTML report to the Jira-shaped JSON handoff and audience-level summaries.
 5. Close with measures from [`docs/measuring-modernization.md`](docs/measuring-modernization.md): stability, elapsed time, throughput, and maintenance effort.
 
 For a compact handout, use the [migration cheat sheet](docs/Selenium-Java-to-Playwright-TS-CheatSheet.md). For a slide-by-slide guide, see [`docs/talk-mapping.md`](docs/talk-mapping.md).
@@ -259,9 +257,18 @@ For a compact handout, use the [migration cheat sheet](docs/Selenium-Java-to-Pla
 - [Selenium legacy examples](selenium-java-legacy/src/test/java/com/blueprint/)
 - [Reusable AI prompts](ai-prompts/)
 - [Reporting example](playwright-ts-modern/src/reporters/jiraReporter.ts)
+- [Reporting and business visibility demo](docs/reporting-and-business-visibility.md)
 - [Screenshot capture script](playwright-ts-modern/scripts/capture-readme-assets.cjs)
 - [Repository tour GIF generator](playwright-ts-modern/scripts/create-repository-tour.cjs)
 - [Talk mapping](docs/talk-mapping.md)
+
+## Additional Learning Guides
+
+- [Migration Manifest](docs/migration-manifest.md)
+- [AI Review Checklist](docs/ai-review-checklist.md)
+- [Cloud vs Local AI](docs/cloud-vs-local-ai.md)
+- [Measuring Modernization](docs/measuring-modernization.md)
+- [Reporting & Visibility Architecture](docs/reporting-and-visibility.md)
 
 ## Suggested GitHub Topics
 
