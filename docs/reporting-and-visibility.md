@@ -139,32 +139,81 @@ Different audiences need different views of the same execution data. Preserve a 
 
 ## Suggested slide 17: From Test Execution to Business Visibility
 
-Show this flow:
+Use this deck-ready Mermaid diagram. The report formats are parallel outputs from the same run, so the diagram does not imply that JUnit feeds the custom reporter.
 
-```text
-Playwright Execution
-        ↓
-HTML Report + JUnit
-        ↓
-Custom Reporter (Jira-shaped JSON)
-        ↓
-Jira Integration Layer (enterprise extension)
-        ↓
-Executive Dashboard (enterprise extension)
-        ↓
-Failure Drill-Down to Evidence
+```mermaid
+flowchart TD
+    E[Playwright Execution] --> H[HTML Report]
+    E --> J[JUnit XML]
+    E --> C[Custom Reporter<br/>Jira-shaped JSON]
+    H --> A[Evidence Artifacts<br/>Screenshots and traces when captured]
+    J --> I[Jira Integration Layer<br/>Enterprise extension]
+    C --> I
+    I --> D[Executive Dashboard<br/>Enterprise extension]
+    A --> D
+    D --> B[Business Confidence]
+    D --> F[Failure Drill-Down]
+    F --> H
 ```
+
+**Bottom message:** “A test isn't finished when it passes. It's finished when the result reaches the people who need it.”
 
 **Speaker notes:** “Automation results have to reach the people who use them. Engineers need failure evidence. Test leads need run trends. Product and delivery leaders need release impact and confidence. In this demo, Playwright generates the detailed HTML report and machine-readable outputs. Our custom reporter creates the JSON handoff. In an enterprise setup, CI can consume that payload and update Jira test management, then publish a dashboard with links back to evidence. This repository demonstrates the handoff; it does not connect to a Jira instance or build the dashboard.”
 
 ## Suggested slide 18: One Report Does Not Serve Every Audience
 
-Use the audience table above, then point out that the HTML report is the investigation view while a dashboard is the summary view. Keep a drill-down link between them:
+Use this visual instead of presenting the audience needs as a list. The existing audience table below can stay in the written guide as a reference.
 
-```text
-Summary → Run → Test → Evidence
+```mermaid
+flowchart TB
+    R[Test Results] --> QE[QE Engineer]
+    R --> TL[Test Lead]
+    R --> PT[Product Team]
+    R --> L[Leadership]
+    QE --> Q1[Trace Viewer]
+    QE --> Q2[Screenshots]
+    QE --> Q3[Error Logs]
+    TL --> T1[Pass Rates]
+    TL --> T2[Trends]
+    TL --> T3[Failures]
+    PT --> P1[Journey Status]
+    PT --> P2[Defects]
+    PT --> P3[Coverage]
+    L --> L1[Risk Summary]
+    L --> L2[Release Health]
+    L --> L3[Confidence]
+    Q1 -. drill down .-> D[Summary → Run → Test → Evidence]
+    T1 -. drill down .-> D
+    P1 -. drill down .-> D
+    L1 -. drill down .-> D
 ```
 
-**30-second demo:** open `playwright-report/` and select a test; show the matching record in `test-results/jira-results.json`; say, “This repository stops here by design. In an enterprise environment, CI would consume this payload and update Jira test management, dashboards, and reporting systems.” Finish by showing the summary-to-evidence drill-down architecture.
+**Speaker notes:** “Engineers need evidence. Leads need trends. Product teams need business impact. Leadership needs confidence.”
+
+**30-second demo:** open `playwright-report/` and select a test; show the matching record in `test-results/jira-results.json`; say, “This repository stops here by design. In an enterprise environment, CI consumes this payload and updates Jira test management and reporting systems.” Finish by showing the summary-to-evidence drill-down architecture.
+
+## Optional ecosystem slide: Modern Quality Engineering
+
+Use this as the broader talk context, not as a description of this repository's implementation. It places UI automation alongside API checks, deployment, and production validation.
+
+```mermaid
+flowchart TD
+    subgraph LEFT[Shift Left]
+        U[Unit Tests] --> API[API Tests<br/>Example: ReadyAPI]
+        API --> UI[UI Tests<br/>Playwright]
+    end
+    UI --> DEPLOY[Deploy]
+    subgraph RIGHT[Shift Right]
+        DEPLOY --> PV[Production Validation]
+        PV --> SYN[Synthetic Monitoring<br/>Example: Datadog]
+        SYN --> OBS[Observability]
+    end
+    UI --> REPORT[Reporting Layer<br/>CI + Jira integration + dashboards]
+    SYN --> REPORT
+    REPORT --> CONF[Business Confidence]
+    AI[AI assistance] -. migration and test authoring .-> UI
+```
+
+ReadyAPI, Datadog, Jira integrations, CI pipelines, and production monitoring are ecosystem examples for the presentation; they are not configured or exercised by this sample repository. The repository focuses on the Selenium Java to Playwright TypeScript UI migration and a local reporting handoff.
 
 **Closing line:** “A test result is useful when it reaches the people who need it, with a path back to the evidence.”
